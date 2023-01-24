@@ -11,4 +11,8 @@ a quick note for the main difference between JAVA 7 & JAVA 11 :
 <br/>
 -Optional class (nullable handling)
 <br/>
--Local/Date-Time-DateTime class 
+-Local/Date-Time-DateTime class
+<br/>
+-Support le TLS 1.3
+<br/>
+-Api string 
