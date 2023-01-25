@@ -1,6 +1,9 @@
+import java.time.LocalDateTime;
+
+
 public class ErrorLogMessage {
 
-    String date;
+    LocalDateTime date;
     String message;
 
 
@@ -8,7 +11,7 @@ public class ErrorLogMessage {
         return message;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -16,7 +19,7 @@ public class ErrorLogMessage {
         this.message = message;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }
