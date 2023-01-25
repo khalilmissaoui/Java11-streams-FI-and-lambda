@@ -46,6 +46,11 @@ public class Main {
 
         errorList.forEach( errorLogMessage -> System.out.println("error date"+errorList.get(0).getDate() +errorList.get(0).getMessage()));
 
+        separate_section();
+        // list to array
+
+        ErrorLogMessage[] errorLogsArray = errorList.toArray(ErrorLogMessage[]::new);
+        System.out.println(errorLogsArray[0].getDate());
     }
 
 
