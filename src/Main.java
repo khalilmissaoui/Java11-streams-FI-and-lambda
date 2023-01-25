@@ -1,8 +1,11 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -13,6 +16,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.regex.Pattern;
 import java.util.regex.MatchResult;
+import java.util.stream.Stream;
 
 
 public class Main {
@@ -40,11 +44,8 @@ public class Main {
         String REGEX ="   :";
 
         //dump logs data
-        String logs = "03/22 08:51:01 INFO   :..settcpimage: Associate with TCP/IP image name = TCPCS\n" +
-                      "03/22 08:51:02 INFO   :..reg_process: registering process with the system\n" +
-                "03/22 08:51:02 ERROR   :..reg_process: attempt OS/390 for registration did fail due to lose connection\n" +
-                "03/22 08:51:02 INFO   :..reg_process: return from registration rc=0\n";
 
+            String logs = Files.readString(Paths.get("C:\\Users\\mi.khalil\\IdeaProjects\\Java11 practice\\src\\logs.txt"));
 
         Predicate<String> errorChecker = (String line) ->
               !line.isBlank() && line.contains(ERROR) ;
