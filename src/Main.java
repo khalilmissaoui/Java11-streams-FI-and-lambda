@@ -1,12 +1,15 @@
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
 
         List<Integer> nums = Arrays.asList(2,45,6,6,9,4,8,7,3,7,1);
@@ -41,7 +44,7 @@ public class Main {
 
         List<ErrorLogMessage> errorList = logs.lines().filter(errorChecker)
                 .map(line -> line.split(REGEX))
-                .map(errorMessage -> builder_ErrorLogMessage(errorMessage) )
+                .map((String[] errorMessage) -> builder_ErrorLogMessage(errorMessage) )
                 .collect(Collectors.toList());
 
         errorList.forEach( errorLogMessage -> System.out.println("error date"+errorList.get(0).getDate() +errorList.get(0).getMessage()));
@@ -51,6 +54,18 @@ public class Main {
 
         ErrorLogMessage[] errorLogsArray = errorList.toArray(ErrorLogMessage[]::new);
         System.out.println(errorLogsArray[0].getDate());
+
+
+        separate_section();
+        // http Client use
+        String HTML ="<html";
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("https://www.google.com"))
+                .build();
+        HttpResponse httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println("http google response contains html body : "+httpResponse.body().toString().contains(HTML));
     }
 
 
