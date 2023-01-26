@@ -41,7 +41,7 @@ public class Main {
         separate_section();
 
         String ERROR = "ERROR";
-        String REGEX ="   :";
+        String REGEX ="  :";
 
         //dump logs data
 
@@ -52,12 +52,11 @@ public class Main {
 
 
         //processing errors
-        List<ErrorLogMessage> errorList = logs.lines().filter(errorChecker)
+        List<ErrorLogMessage> errorList = logs.lines()
+                .filter(errorChecker)
                 .map(line -> line.split(REGEX))
                 .map((String[] errorMessage) -> log_ErrorLogMessage_builder(errorMessage) )
                 .collect(Collectors.toList());
-
-        errorList.forEach( errorLogMessage -> System.out.println("error date : "+errorList.get(0).getDate() +"\nerror message : "+ errorList.get(0).getMessage()));
 
 
         // list to array
@@ -65,7 +64,9 @@ public class Main {
 
 
         ErrorLogMessage[] errorLogsArray = errorList.toArray(ErrorLogMessage[]::new);
-
+        Arrays.stream(errorLogsArray).forEach(
+                logMessage ->  System.out.println("date :" + logMessage.getDate() + "logs message :"  +logMessage.getMessage())
+        );
 
         //http Client use
         separate_section();
